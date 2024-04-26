@@ -1,9 +1,14 @@
-package MODUL3.Tugas;
-
+package MODUL4.Tugas.data;
+import MODUL4.Tugas.com.main.Main;
+import MODUL4.Tugas.books.Book;
+import util.iMenu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Student extends User{
+import static MODUL4.Tugas.com.main.Main.inputpilihan;
+import static MODUL4.Tugas.com.main.Main.menustudent;
+
+public class Student extends User implements iMenu {
 
     static  Scanner inputuser = new Scanner(System.in);
     static  String idBukuYangDipinjam;
@@ -11,6 +16,40 @@ public class Student extends User{
 
     static ArrayList<BorrowedBook>arr_borrowedBook = new ArrayList<>();
     static ArrayList<UserStudent> arr_userStudent = new ArrayList<>();
+
+    @Override
+    public void menu() {
+        Student studentObject = new Student();
+        Student.displayInfo();
+        System.out.println("\n==== Student Menu ====");
+        System.out.print("\n1. Buku Terpinjam\n2. Pinjam buku\n3. Kembalikan buku\n4. Logout");
+        System.out.println("\n Choose option (1-4): ");
+
+        int pilihan = inputpilihan.nextInt();
+        switch (pilihan){
+            case 1:
+                Student.showBorrowedBooks();
+                menustudent();
+                break;
+            case 2:
+                studentObject.choiceBook();
+                Student.borrowedBooks();
+                menustudent();
+                break;
+            case 3:
+                Student.showBorrowedBooks();
+                Student.returnBooks();
+                menustudent();
+                break;
+            case 4:
+                Student.logout();
+                break;
+            default:
+                System.out.print("Pilih 1-4");
+                menustudent();
+        }
+
+    }
 
     static class BorrowedBook {
         String id;
@@ -61,9 +100,10 @@ public class Student extends User{
     }
 
     @Override
-    public void displayBooks(){
-        super.displayBooks();
+    public void choiceBook(){
+        super.choiceBook();
     }
+    //public void displayBooks(){     super.displayBooks();}
     public static void logout(){
         Main.menu();
     }

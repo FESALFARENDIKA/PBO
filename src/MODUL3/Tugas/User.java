@@ -1,3 +1,5 @@
+package MODUL3.Tugas;
+
 import java.util.Scanner;
 
 public class User {

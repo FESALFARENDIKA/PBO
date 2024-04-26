@@ -1,4 +1,4 @@
-package MODUL3.Tugas;
+package MODUL4.Tugas.books;
 
 public class StoryBook extends Book {
     private String category;

@@ -1,4 +1,4 @@
-package MODUL3.Tugas;
+package MODUL4.Tugas.books;
 
 public class Book {
 
@@ -8,6 +8,7 @@ public class Book {
     private String category;
     private int stock;
     private int duration;
+
 
     public Book(String bookId, String title, String author, int stock){
         this.bookId   = bookId;

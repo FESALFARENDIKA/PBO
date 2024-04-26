@@ -1,4 +1,8 @@
-package MODUL3.Tugas;
+package MODUL4.Tugas.com.main;
+
+import MODUL4.Tugas.data.*;
+//import data.Admin;
+//import data.Student;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,37 +14,42 @@ public class Main {
 
 
     //===============================================================================================================//
-    static ArrayList<BookList> arr_bookList = new ArrayList<>();
+    public static ArrayList<BookList> arr_bookList = new ArrayList<>();
 
     //=========================== =====================================
-    static Scanner inputpilihan = new Scanner(System.in);
+    public static Scanner inputpilihan = new Scanner(System.in);
     static Scanner inputuser = new Scanner(System.in);
     //================================================================
-    static String NIM;
+    public static String NIM;
 //================================================================
 
-    static class BookList{
-        String idbuku, judulbuku, penulisbuku, kategoriBuku;
-        int stokbuku;
+    public static class BookList{
+        public String idbuku;
+        public String judulbuku;
+        public String penulisbuku;
+        public String kategoriBuku;
+        public int stokbuku;
+
+        public void Booklist(String idbuku, String judulbuku, String penulisbuku){
+            this.idbuku          = idbuku;
+            this.judulbuku       = judulbuku;
+            this.penulisbuku     = penulisbuku;
+        }
 
 
         public BookList(String idbuku, String judulbuku, String penulisbuku, String kategoriBuku, int stokbuku){
-
-
             this.idbuku          = idbuku;
             this.judulbuku       = judulbuku;
             this.penulisbuku     = penulisbuku;
             this.kategoriBuku    = kategoriBuku;
             this.stokbuku        = stokbuku;
-
-
-
         }
     }
 
     //================================================================
-    static void menu(){
+    public static void menu(){
         Admin adminObj = new Admin();
+        Student studentObj = new Student();
         int menuloop = 0;
 
         do{
@@ -52,12 +61,12 @@ public class Main {
             switch (pilihan) {
                 case 1:
                     Student.loginstudent();
-                    menustudent();
+                    studentObj.menu();
                     break;
 
                 case 2:
                     adminObj.validasiLogin();
-                    menuadmin();
+                    adminObj.menu();
 
                     break;
 
@@ -68,12 +77,12 @@ public class Main {
         }while(menuloop == 0);
     }
 
-    static void inputNIM(){
+    public static void inputNIM(){
         System.out.println("Masukkan NIM: ");
         NIM = inputuser.nextLine();
     }
 
-    static void menuadmin() {
+    public static void menuadmin() {
         Admin adminObject = new Admin();
         System.out.println("\n==== Admin Menu ====");
         System.out.println("\n1. Tambah Mahasiswa\n2. Daftar Mahasiswa\n3. Tambah Buku\n4. Logout");
@@ -104,7 +113,7 @@ public class Main {
 
     }
 
-    static void menustudent(){
+    public static void menustudent(){
         Student studentObject = new Student();
         Student.displayInfo();
         System.out.println("\n==== Student Menu ====");
@@ -118,8 +127,8 @@ public class Main {
                 menustudent();
                 break;
             case 2:
-                studentObject.displayBooks();
-                Student.borrowedBooks();
+                studentObject.choiceBook();
+                //Student.borrowedBooks(); METHOD DIMASUKKAN KEDALAM CHOICEBOOK SESUAI PERINTAH TUGAS M4
                 menustudent();
                 break;
             case 3:

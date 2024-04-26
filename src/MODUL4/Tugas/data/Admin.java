@@ -1,9 +1,14 @@
-package MODUL3.Tugas;
+package MODUL4.Tugas.data;
+
+import util.iMenu;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Admin extends User {
+import static MODUL4.Tugas.com.main.Main.inputpilihan;
+import static MODUL4.Tugas.com.main.Main.menuadmin;
+
+public class Admin extends User implements iMenu {
     static String adminusername = "fesal";
     static String adminpassword = "farendika";
 
@@ -44,10 +49,10 @@ public class Admin extends User {
         super.inputBook();
     }
     @Override
-    public void displayBooks() {
-        super.displayBooks();
+    public void choiceBook() {
+        super.choiceBook();
     }
-    static void displaystudent() {
+    public static void displaystudent() {
         System.out.println("\n==== Daftar Mahasiswa ====");
         for (Student.UserStudent i : Student.arr_userStudent) {
             System.out.print("Nama : " + i.nama + "\n");
@@ -92,9 +97,39 @@ public class Admin extends User {
 
     public void validasiLogin(){
         if(isAdmin()){
-            Main.menuadmin();
+            menuadmin();
         }else{
             isAdmin();
+        }
+    }
+
+    @Override
+    public void menu() {
+        Admin adminObject = new Admin();
+        System.out.println("\n==== Admin Menu ====");
+        System.out.println("\n1. Tambah Mahasiswa\n2. Daftar Mahasiswa\n3. Tambah Buku\n4. Logout");
+        System.out.print("Choose option (1-4): ");
+
+        int pilihan = inputpilihan.nextInt();
+        switch (pilihan) {
+            case 1:
+                Admin.addstudent();
+                menuadmin();
+                break;
+            case 2:
+                Admin.displaystudent();
+                menuadmin();
+                break;
+            case 3:
+                adminObject.inputBook();
+                menuadmin();
+                break;
+            case 4:
+                menu();
+                break;
+            default:
+                System.out.print("Pilih 1-4");
+                menuadmin();
         }
     }
 }
